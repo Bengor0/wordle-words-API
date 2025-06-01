@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wordle words</title>
+  </head>
+  <body>
+    <pre id="wordle-words"></pre>
+    <script>
+      const fetchData = async () => {
+        try {
+          const res = await fetch("wordle-wordbank.json");
+          if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+          } else {
+            const data = res.json();
+            const words = JSON.stringify(data, 2, null);
+            document.getElementById("wordle-words").textContent = words;
+          }
+        } catch (error) {
+          console.error(`Failed to fetch words: ${error}`);
+          document.getElementById(
+            "wordle-words"
+          ).textContent = `Failed to fetch words: ${error}`;
+        }
+      };
+      document.addEventListener("DOMContentLoaded", fetchData);
+    </script>
+  </body>
+</html>
