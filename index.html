@@ -10,7 +10,7 @@
     <script>
       const fetchData = async () => {
         try {
-          const res = await fetch("wordle-wordbank.json");
+          const res = await fetch("./wordle-wordbank.json");
           if (!res.ok) {
             throw new Error(`HTTP error! Status: ${res.status}`);
           } else {
